@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/** @typedef {import('es-dev-server').Config} ServerConfig */
+
 /* eslint-disable no-console, no-param-reassign */
 const { createConfig, startServer } = require('es-dev-server');
 const path = require('path');
@@ -41,7 +43,9 @@ async function run() {
   config.babelModernExclude = [...(config.babelModernExclude || []), '**/storybook-prebuilt/**'];
   config.fileExtensions = [...(config.fileExtensions || []), '.md', '.mdx'];
 
+  // @ts-ignore
   config.responseTransformers = [
+    // @ts-ignore
     ...(config.responseTransformers || []),
     mdjsToCsfTransformer,
     mdxToCsfTransformer,
