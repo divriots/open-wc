@@ -1,3 +1,11 @@
+---
+permalink: 'testing/karma-esm.html'
+title: karma-esm
+section: guides
+tags:
+  - guides
+---
+
 # karma-esm
 
 Karma plugin for running tests with es modules on a wide range of browsers.
@@ -199,15 +207,3 @@ npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-
   // ],
 }
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/karma-esm/README.md';
-      }
-    }
-  }
-</script>
