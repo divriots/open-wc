@@ -81,6 +81,16 @@ export const JsStory = () => html` <demo-wc-card>JS Story</demo-wc-card> `;
 ```
 ````
 
+Here is a live example from [demo-wc-card]()
+
+```js preview-story
+import { html } from 'lit-html';
+import 'https://unpkg.com/demo-wc-card@0.0.1/demo-wc-card.js?module';
+export const header = () => {
+  return html` <demo-wc-card .header=${'my new header'}></demo-wc-card> `;
+};
+```
+
 ## Supported Systems
 
 ### es-dev-server
@@ -154,12 +164,12 @@ const { mdjsProcess } = require('@mdjs/core');
 const data = await mdjsProcess(markdownString);
 console.log(data);
 /*
-{ 
+{
   jsCode: "
     import '@mdjs/mdjs-story/mdjs-story.js';
     ...
   ",
-  html: '<h1>Markdown One</h1>', 
+  html: '<h1>Markdown One</h1>',
 }
 */
 ```
@@ -183,4 +193,8 @@ console.log(result.contents);
 console.log(jsCode);
 // customElements.define('my-el', class extends HTMLElement {
 // ...
+```
+
+```
+
 ```

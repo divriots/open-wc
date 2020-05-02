@@ -9,23 +9,29 @@ const raw = require('rehype-raw');
 const htmlStringify = require('rehype-stringify');
 const htmlSlug = require('rehype-slug');
 const htmlHeading = require('rehype-autolink-headings');
+const rehypePrism = require('rehype-prism-template');
 
 const { mdjsParse } = require('./mdjsParse.js');
 const { mdjsStoryParse } = require('./mdjsStoryParse.js');
 
 async function mdjsProcess(
   mdjs,
-  { rootNodeQueryCode = 'document', mdjsStoryParseOptions = {} } = {},
+  { rootNodeQueryCode = 'document', mdjsStoryParseOptions = {}, htmlHeadingOptions = {} } = {},
 ) {
   const parser = unified()
     .use(markdown)
     .use(mdjsParse)
     .use(mdjsStoryParse, mdjsStoryParseOptions)
     .use(remark2rehype, { allowDangerousHTML: true })
+    .use(rehypePrism)
     .use(raw)
     .use(htmlSlug)
-    .use(htmlHeading)
+    .use(htmlHeading, htmlHeadingOptions)
     .use(htmlStringify);
+
+  // for (let i = 0; i < options.plugins.length; i += 1) {
+  //   processor.use(options.plugins[i]);
+  // }
 
   /** @type {unknown} */
   const parseResult = await parser.process(mdjs);
